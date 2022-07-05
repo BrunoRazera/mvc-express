@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 // A informação adicional é capturada através do parâmetro da URL, representado na rota pela sintaxe :id
 // localhost:3000/usuario/1, O número 1 será armazenado na variável id
 const usuarios = require('./models/usuarios');
-app.get('/usuario/:id', (req, res) => {
+app.get('/usuarios/:id', (req, res) => {
   const { id } = req.params; // Entrada de dados!
   const dados = usuarios.filter((item) => item.id == id); // Chamada para o modelo (busca info.)
   return res.send(dados[0].nome + ' ' + dados[0].idade); // Saída de dados!
@@ -26,6 +26,12 @@ app.get('/usuario/:id', (req, res) => {
 // Criação da rota com MVC
 const usuariosController = require('./controllers/usuarios');
 app.get('/usuario/:id', usuariosController.get);
+
+// Adicionando template engine ao express
+app.set('view engine', 'ejs');
+
+// Configurar o local de arquivos estáticos
+app.use(express.static('public'));
 
 // Disponibilizamos uma porta para que nosso
 // computador possa receber mensagens através dela.

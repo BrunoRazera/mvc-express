@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+
+<main>
+  <% dados.forEach(item => { %>
+    <p>
+      Nome: <%= item.nome %>,
+      Idade: <%= item.idade %>
+    </p>
+  <% }) %>
+</main>
+
+<%- include('partials/footer') %>
